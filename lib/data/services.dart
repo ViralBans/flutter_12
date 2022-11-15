@@ -1,6 +1,9 @@
 class SimpleData {
-  String getText() {
-    Future.delayed(const Duration(seconds: 3));
-    return 'String from Data';
+  String getText([int? count]) {
+    if(count == null) {
+      return 'String from Data';
+    } else {
+      return 'String from Data with count = $count';
+    }
   }
 }

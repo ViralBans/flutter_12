@@ -11,12 +11,19 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   late String result;
+  late int _count = 0;
 
   @override
   void initState() {
     super.initState();
-    result = GetIt.I.get<SimpleFunctions>().sText();
-    // result = locator<SimpleFunctions>().sText();
+    result = GetIt.I.get<SimpleFunctions>().gText();
+  }
+
+  void _changeData() {
+    setState(() {
+      _count++;
+      result = GetIt.I.get<SimpleFunctions>().gText(_count);
+    });
   }
 
   @override
@@ -31,9 +38,9 @@ class _MainScreenState extends State<MainScreen> {
         ),
       ),
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {},
-        label: const Text('Добавить Data'),
-        icon: const Icon(Icons.add),
+        onPressed: _changeData,
+        label: const Text('Изменить Data'),
+        icon: const Icon(Icons.edit),
       ),
     );
   }
